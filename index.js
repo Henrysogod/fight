@@ -86,9 +86,11 @@ const player = new Fighter({
     },
     width: 160,
     height: 50
-  }
+  },
+  // soundbyte: "https://www.soundboard.com/mediafiles/mz/MzExMDI1ODkzMzExMDU1_u0Vv8PtwUzI.MP3"
   
 })
+
 
 const enemy = new Fighter({
   position: {
@@ -106,10 +108,10 @@ const enemy = new Fighter({
   },
   imageSrc: './kenji/Idle.png',
   framesMax: 4,
-  scale: 2.5,
+  scale: 2.385,
   offset: {
     x: 215,
-    y: 167
+    y: 157
   },
   sprites: {
     idle: {
@@ -144,8 +146,12 @@ const enemy = new Fighter({
     },
     width: 170,
     height: 50
-  }
+  },
+  // soundbyte: "https://www.soundboard.com/mediafiles/nd/NDMzNzI1ODkzNDMzNzc1_RC8VGes6p0M.MP3"
+
 })
+
+
 
 console.log(player)
 
@@ -176,13 +182,20 @@ decreseTimer()
 
 function animate() {
   window.requestAnimationFrame(animate)
-  c.fillStyle = 'black'
+
+  c.fillStyle = 'rgb(135, 206, 235)'
   c.fillRect(0, 0, canvas.width, canvas.height)
+  c.fillStyle = 'rgba( 253, 184, 19)'
+  c.fillRect(425, 150, 50, 50)
   background.update()
   shop.update()
-  c.fillStyle = 'gray'
+  c.fillStyle = 'green'
+  c.fillRect(0, 475, canvas.width, 10)
+  c.fillStyle = 'rgba(155, 118, 83)'
   c.fillRect(0, 478, canvas.width, 100)
-  c.fillStyle = 'rgba(255, 255, 255, 0.15)'
+  c.fillStyle = 'rgba(255, 255, 255, 0.2)'
+  c.fillRect(0, 0, canvas.width, canvas.height)
+  c.fillStyle = 'rgba(0, 0, 0, 0.3)'
   c.fillRect(0, 0, canvas.width, canvas.height)
   player.update()
   enemy.update()
@@ -233,6 +246,7 @@ function animate() {
     player.isAttacking && player.framesCurrent === 4
     ) {
     enemy.takeHit()
+
     player.isAttacking = false
     
    
@@ -253,6 +267,7 @@ function animate() {
     enemy.isAttacking && enemy.framesCurrent === 2
     ) {
       player.takeHit()
+
     enemy.isAttacking = false
     
     

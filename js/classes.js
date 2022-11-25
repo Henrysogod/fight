@@ -46,18 +46,17 @@ class Sprite {
   }
   
   class Fighter extends Sprite{
-    constructor({ position, velocity, color = 'red', imageSrc, scale = 1, framesMax = 1, offset = {x: 0, y: 0}, sprites, attackBox = { offset: {}, width: undefined, height: undefined }}) {
+    constructor({ soundbyte, position, velocity, color = 'red', imageSrc, scale = 1, framesMax = 1, offset = {x: 0, y: 0}, sprites, attackBox = { offset: {}, width: undefined, height: undefined }}) {
         super({
-            
             position,
             imageSrc,
             scale,
             framesMax,
-            offset,
+            offset
              })
         
-        
       
+      this.ouch = new Audio(soundbyte);
       this.velocity = velocity
       this.width = 50
       this.height = 150
@@ -98,9 +97,9 @@ class Sprite {
       this.position.x += this.velocity.x
       this.position.y += this.velocity.y
   
-      if (this.position.y + this.height + this.velocity.y >= canvas.height - 96) {
+      if (this.position.y + this.height + this.velocity.y >= canvas.height - 100) {
         this.velocity.y = 0
-        this.position.y = 330
+        this.position.y = 326
       } else this.velocity.y += gravity
     }
   
@@ -111,7 +110,9 @@ class Sprite {
     takeHit() {
         this.switchSprite('takeHit')
         this.health -= 20
+        this.ouch.play()
     }
+
 
     switchSprite (sprite) {
         //overriding all animations with attack
