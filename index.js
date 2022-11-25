@@ -235,8 +235,9 @@ function animate() {
     enemy.takeHit()
     player.isAttacking = false
     
-    gsap.so('#playerHeath', {
-      width: player.health + '%'
+   
+    gsap.to('#enemyHealth', {
+      width: enemy.health + '%'
     })
   }
 
@@ -254,7 +255,10 @@ function animate() {
       player.takeHit()
     enemy.isAttacking = false
     
-    document.querySelector('#playerHealth').style.width = player.health + '%'
+    
+    gsap.to('#playerHealth', {
+      width: player.health + '%'
+    })
   }
 
   //if enemy misses
